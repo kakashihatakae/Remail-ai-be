@@ -2,14 +2,18 @@ from pydantic import BaseModel
 from typing import Union
 
 
-class JobDescription(BaseModel):
-    userId: str
-    title: str
-    location: Union[str, None] = None
-    onsite_remote: Union[str, None] = None
-    duration: Union[str, None] = None
-    contract_type: Union[str, None] = None
-    visa: Union[str, None] = None
-    experience: Union[str, None] = None
-    rate: Union[str, None] = None
-    skills: str
+class IntroEmailInfo(BaseModel):
+    vendorName: str
+    vendorCompany: str
+    vendorEmail: str
+    senderName: Union[str, None] = None
+    senderCompany: Union[str, None] = None
+    senderEmail: Union[str, None] = None
+
+
+class Campaign(BaseModel):
+    MSUserId: str
+    MSConversationId: str
+    vendorName: str
+    vendorCompany: str
+    vendorEmail: str

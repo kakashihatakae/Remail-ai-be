@@ -10,13 +10,14 @@ app = FastAPI()
 origins = [
     "https://remail-ai-fe-d6c47adb68c1.herokuapp.com",
     "https://www.careersasha.com",
+    "http://localhost:3000",
 ]
 
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_origin_regex="https://www.careersasha.com/*",
+    # allow_origin_regex="https://www.careersasha.com/*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
