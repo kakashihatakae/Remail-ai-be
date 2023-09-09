@@ -11,6 +11,19 @@ class IntroEmailInfo(BaseModel):
     senderEmail: Union[str, None] = None
 
 
+class PersionInfo(BaseModel):
+    name: str
+    address: str
+
+
+class ReplyEmailInfo(BaseModel):
+    prevBodySent: str
+    prevSender: Union[PersionInfo, None] = None
+    meetingLink: Union[str, None] = None
+    isMeFollowUp: bool
+    extraNotes: Union[str, None] = None
+
+
 class Campaign(BaseModel):
     MSUserId: str
     MSConversationId: str

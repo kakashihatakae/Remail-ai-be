@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from database import SessionLocal
 from Email import CRUD, AIUtils
-from Email.schemas import IntroEmailInfo, Campaign
+from Email.schemas import IntroEmailInfo, Campaign, ReplyEmailInfo
 
 
 EmailRouter = APIRouter()
@@ -19,15 +19,18 @@ def get_db():
         db.close()
 
 
-# Divide email creation into
-# 1. Intro generation
-# generate intro and create draft on FE side
-# 2. save email
-# if sending is successful on FE then save the email on BE side
 @EmailRouter.post("/new-email-intro")
 async def CreateNewEmail(IntroEmailInfo: IntroEmailInfo):
     ai_email_string = await AIUtils.generateIntroEmail(IntroEmailInfo)
     return json.loads(ai_email_string, strict=False)
+
+
+@EmailRouter.post("/ai-reply")
+async def getReply(ReplyEmailInfo: ReplyEmailInfo):
+    print("==>")
+    ai_reply_string = await AIUtils.generateReply(ReplyEmailInfo)
+    # return ai_reply_string
+    return json.loads(ai_reply_string, strict=False)
 
 
 # @EmailRouter.post("/new_email")
